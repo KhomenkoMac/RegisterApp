@@ -1,4 +1,4 @@
-package com.example.register.Exceptions.Models;
+package com.example.register.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +17,7 @@ import java.util.Date;
 @Builder
 public class LogRecord {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false, updatable = false)
@@ -25,7 +26,5 @@ public class LogRecord {
 
     private String description;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private String userEmail;
 }

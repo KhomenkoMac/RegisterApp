@@ -1,14 +1,11 @@
-package com.example.register.Exceptions.Models;
+package com.example.register.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "ownership_types")
@@ -18,8 +15,9 @@ import javax.persistence.Table;
 @Builder
 public class OwnershipType {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ownershipTypeId;
 
     @Column(unique = true)
-    private String Name;
+    private String name;
 }

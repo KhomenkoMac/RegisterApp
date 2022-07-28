@@ -1,4 +1,4 @@
-package com.example.register.Exceptions.Models;
+package com.example.register.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,8 +15,9 @@ import javax.persistence.*;
 @Builder
 public class ActivityKind {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer activityKindId;
 
     @Column(unique = true)
-    private String Name;
+    private String name;
 }

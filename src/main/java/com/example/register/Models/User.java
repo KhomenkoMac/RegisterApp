@@ -1,12 +1,11 @@
-package com.example.register.Exceptions.Models;
+package com.example.register.Models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -28,6 +27,7 @@ public class User {
     @Column(name = "Patronymic", nullable = false)
     private String patronymic;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "Birthdate", nullable = false)
     private Date birthdate;
 
@@ -37,6 +37,7 @@ public class User {
     @Column(name = "Password", nullable = false)
     private String password;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(
             name = "role_id",
@@ -44,13 +45,6 @@ public class User {
     )
     private Role role;
 
-    @OneToOne(cascade = CascadeType.ALL,
-              fetch = FetchType.EAGER)
-    @JoinColumn(
-            name = "passport_data_id",
-            referencedColumnName = "PassportDataId")
-    private PassportData passportData;
-
     @Embedded
-    private Place place;
+    private PassportData passportData;
 }

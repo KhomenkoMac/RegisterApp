@@ -1,9 +1,10 @@
-package com.example.register.Exceptions.Models;
+package com.example.register.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,6 +18,7 @@ import java.util.Date;
 public class PhysicalPersonEntrepreneur {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "Name", nullable = false)
@@ -28,13 +30,16 @@ public class PhysicalPersonEntrepreneur {
     @Column(name = "Patronymic", nullable = false)
     private String patronymic;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "Birthdate", nullable = false)
     private Date birthdate;
 
-    @OneToOne(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
-    @JoinColumn(
-            name = "passport_data_id",
-            referencedColumnName = "PassportDataId")
+    @Column(name = "ProceedingName", nullable = false)
+    private String proceedingName;
+
+    @Embedded
     private PassportData passportData;
+
+    @Embedded
+    private Place place;
 }

@@ -1,4 +1,4 @@
-package com.example.register.Exceptions.Models;
+package com.example.register.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

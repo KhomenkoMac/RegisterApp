@@ -1,4 +1,4 @@
-package com.example.register.Exceptions.Models;
+package com.example.register.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,10 +16,11 @@ import javax.persistence.*;
 public class JuridicalPerson {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(unique = true)
-    private String EnterpriseName;
+    private String enterpriseName;
 
     @Column(unique = true)
     private String edrpou;
@@ -40,6 +41,7 @@ public class JuridicalPerson {
 
     private Double capitalPart;
 
+    @Column(name = "ProceedingName", nullable = false)
     private String proceedingName;
 
     @Embedded

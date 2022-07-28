@@ -1,4 +1,4 @@
-package com.example.register.Exceptions.Models;
+package com.example.register.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -29,6 +30,6 @@ public class Role {
     @OneToMany(cascade = CascadeType.REMOVE,
                fetch = FetchType.LAZY,
                mappedBy = "role")
-    private Set<User> users;
+    private List<User> users;
 
 }

@@ -1,33 +1,25 @@
-package com.example.register.Exceptions.Models;
+package com.example.register.Models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
 
 import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.GenerationType.IDENTITY;
 
-@Entity
-@Table(name = "passportDatas")
+@Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Builder
+@Data
 public class PassportData {
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "PassportDataId")
-    private Integer passportDataId;
-
     @Column(name = "PassportNumber",
             nullable = false,
             unique = true)
     private String passportNumber;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "IssuanceDate",
             nullable = false)
     private Date passportIssuanceDate;

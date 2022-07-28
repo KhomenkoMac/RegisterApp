@@ -1,4 +1,4 @@
-package com.example.register.Exceptions.Models;
+package com.example.register.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -22,5 +24,9 @@ public class PassportSeries {
     private Integer id;
 
     @Column(name = "SeriesName", unique = true, length = 2)
-    private String Name;
+    private String name;
+
+//    @OneToMany(cascade = CascadeType.REMOVE,
+//            fetch = FetchType.LAZY)
+//    private List<User> users;
 }

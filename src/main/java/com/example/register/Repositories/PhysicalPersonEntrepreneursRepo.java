@@ -1,6 +1,5 @@
 package com.example.register.Repositories;
 
-import com.example.register.Models.JuridicalPerson;
 import com.example.register.Models.PhysicalPersonEntrepreneur;
 import org.springframework.data.jpa.repository.JpaRepository;
 
