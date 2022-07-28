@@ -1,0 +1,166 @@
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Реєстр</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+
+    <link href="pricing.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container py-3">
+    <header th:insert="Layout/header::header_fr" />
+
+    <main class="pb-5">
+        <h1>Видалення</h1>
+
+        <h4>Фізична особа-підприємець</h4>
+
+        <hr />
+        <div class="row">
+            <form th:action="@{/physpers/delete/{id}(id=${model.id})}" method="post">
+                <div class="col-md-4">
+                    <dl class="row">
+                        <dt class = "col-sm-6 mb-4">
+                            Iм'я
+                        </dt>
+                        <dd class = "col-sm-6 mb-4" th:text="${model.name}">
+                        </dd>
+                        <dt class = "col-sm-6">
+                            Прізвище
+                        </dt>
+                        <dd class = "col-sm-6 mb-4" th:text="*{model.surname}">
+                        </dd>
+                        <dt class = "col-sm-6 mb-4">
+                            По-батькові
+                        </dt>
+                        <dd class = "col-sm-6 mb-4" th:text="${model.patronymic}">
+                        </dd>
+                        <dt class = "col-sm-6 mb-4">
+                            Дата народження
+                        </dt>
+                        <dd class = "col-sm-6 mb-4" th:text="${#dates.format(model.birthdate, 'dd-MM-yyyy')}">
+                        </dd>
+                        <dt class = "col-sm-6 mb-4">
+                            Серія паспорта
+                        </dt>
+                        <dd class = "col-sm-6 mb-4" th:text="${model.passportData.passportSeries?.name}">
+                        </dd>
+                        <dt class = "col-sm-6 mb-4">
+                            Номер паспорта
+                        </dt>
+                        <dd class = "col-sm-6 mb-4" th:text="*{model.passportData.passportNumber}">
+                        </dd>
+                        <dt class = "col-sm-6 mb-4">
+                            Дата видачі паспорта
+                        </dt>
+                        <dd class = "col-sm-6 mb-4" th:text="${#dates.format(model.passportData.passportIssuanceDate, 'dd-MM-yyyy')}">
+                        </dd>
+                        <dt class = "col-sm-6 mb-4">
+                            Код платника податків
+                        </dt>
+                        <dd class = "col-sm-6 mb-4" th:text="*{model.passportData.taxPayerCode}">
+                        </dd>
+
+                        <dt class = "col-sm-6 mb-4">
+                            Назва провадження
+                        </dt>
+                        <dd class = "col-sm-6 mb-4" th:text="${model.proceedingName}">
+                        </dd>
+
+                        <dt class = "col-sm-6 mb-4">
+                            Місто
+                        </dt>
+                        <dd class = "col-sm-6 mb-4" th:text="*{model.place.city}">
+                        </dd>
+
+                        <dt class = "col-sm-6 mb-4">
+                            Вулиця
+                        </dt>
+                        <dd class = "col-sm-6 mb-4" th:text="*{model.place.street}">
+                        </dd>
+
+                        <dt class = "col-sm-6 mb-4">
+                            Будинок
+                        </dt>
+                        <dd class = "col-sm-6 mb-4" th:text="*{model.place.building}">
+                        </dd>
+
+                        <dt class = "col-sm-6 mb-4">
+                            Квартиа
+                        </dt>
+                        <dd class = "col-sm-6 mb-4" th:text="*{model.place.apartment}">
+                        </dd>
+                    </dl>
+                </div>
+                <div>
+                    <button th:if="${!auth_service.isUnregistered()} and ${auth_service.isRegistrator()}" class="btn btn-danger">Видалити</button>
+                    <a class="btn btn-info" th:href="@{/physpers}">Назад до списку</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer th:insert="Layout/footer::footer_fr" />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</div>
+</body>
+</html>
+
+
