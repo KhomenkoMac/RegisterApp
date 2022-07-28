@@ -1,4 +1,4 @@
-package com.example.register.Models;
+package com.example.register.Exceptions.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-import java.util.Set;
-
-import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
