@@ -1,56 +1,16 @@
-<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-    <div class="container">
-        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Реєстр</a>
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-            <ul class="navbar-nav flex-grow-1">
-                <!--                    @if (TempData.Peek("currentRole") != null)-->
-                <!--                    {-->
-                <!--                    @if (RolesEnum.Registrator == (RolesEnum)TempData.Peek("currentRole"))-->
-                <!--                    {-->
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="PhysicalPersonEnterprenerRegstationModels" asp-action="Index">Відомості про фізичних осіб підприємців</a>
-                </li>
+<section th:fragment="header_fr">
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+            <span class="fs-4">Реєстр</span>
+        </a>
 
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="JuridicalPersonRegistrationModels" asp-action="Index">Відомості про Юридичних осіб</a>
-                </li>
-                <!--                    }-->
-
-                <!--                    @if (RolesEnum.Administrator == (RolesEnum)TempData.Peek("currentRole"))-->
-                <!--                    {-->
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="RegistratorModels" asp-action="Index">Реєстратори</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="LogJournalModels" asp-action="Index">Журнал подій</a>
-                </li>
-                <!--                    }-->
-
-                <li class="nav-item flex-grow-1"></li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="SingIns" asp-action="LeaveSession">Вихід</a>
-                </li>
-                <!--                    }-->
-                <!--                    else-->
-                <!--                    {-->
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="PhysicalPersonEnterprenerRegstationModels" asp-action="Index">Відомості про фізичних осіб підприємців</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="JuridicalPersonRegistrationModels" asp-action="Index">Відомості про Юридичних осіб</a>
-                </li>
-
-                <li class="nav-item flex-grow-1"></li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="SingIns" asp-action="Index">Вхід</a>
-                </li>
-                <!--                    }-->
-            </ul>
-        </div>
+        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+            <a class="me-3 py-2 text-dark text-decoration-none" th:href="@{/physpers}">Відомості про фізичних осіб підприємців</a>
+            <a class="me-3 py-2 text-dark text-decoration-none" th:href="@{/jurpers}">Відомості про Юридичних осіб</a>
+            <a th:if="${!auth_service.isUnregistered()} and ${auth_service.isAdmin()}" class="me-3 py-2 text-dark text-decoration-none" th:href="@{/registrators}">Реєстратори</a>
+            <a th:if="${!auth_service.isUnregistered()} and ${auth_service.isAdmin()}" class="me-3 py-2 text-dark text-decoration-none" th:href="@{/logs}">Журнал подій</a>
+            <a th:if="${auth_service.isUnregistered()}" class="me-3 py-2 text-dark text-decoration-none" th:href="@{/sign-in}">Вхід</a>
+            <a th:if="${!auth_service.isUnregistered()}" class="me-3 py-2 text-dark text-decoration-none" th:href="@{/sign-out}">Вихід</a>
+        </nav>
     </div>
-</nav>
+</section>
